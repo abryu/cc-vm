@@ -8,7 +8,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=gcr.io/$PROJECT_ID/vm/${SHORT_SHA}', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '--tag=gcr.io/$PROJECT_ID/vm/${SHORT_SHA}', '.']
+  args: ['push', '--tag=gcr.io/$PROJECT_ID/vm/${SHORT_SHA}']
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['set','image','deployment/vm/','vm=gcr.io/$PROJECT_ID/vm:${SHORT_SHA}']
   env:
