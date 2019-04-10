@@ -6,11 +6,11 @@ steps:
 - name: 'gcr.io/cloud-builders/mvn'
   args: ['package']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/$PROJECT_ID/${SHORT_SHA}', '.']
+  args: ['build', '--tag=gcr.io/$PROJECT_ID/vm/${SHORT_SHA}', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '--tag=gcr.io/$PROJECT_ID/${SHORT_SHA}', '.']
+  args: ['push', '--tag=gcr.io/$PROJECT_ID/vm/${SHORT_SHA}', '.']
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['apply','-f','vm.yml']
+  args: ['set','image','deployment/vm/','vm=gcr.io/$PROJECT_ID/vm:${SHORT_SHA}']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=k0'
