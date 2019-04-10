@@ -1,0 +1,9 @@
+indexes:
+- kind: history
+  ancestor: no
+  properties:
+    - name: associatedVmId
+    - name: timestamp
+      direction: desc
+
+
