@@ -1,0 +1,13 @@
+{
+  "triggerTemplate": {
+    "projectId": "wyownproject",
+    "repoName": "vm",
+    "branchName": "master"
+  },
+  "description": "master",
+  "substitutions": {
+    "_CLOUDSDK_COMPUTE_ZONE": "us-central1-a",
+    "_CLOUDSDK_CONTAINER_CLUSTER": "k0"
+  },
+  "filename": "builder/cloudbuild-vm.yaml"
+}
