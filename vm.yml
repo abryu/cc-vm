@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vm-cl
+  labels:
+    app: vm
+spec:
+  ports:
+  - port: 33009
+    name: vm
+  selector:
+    app: vm
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vm
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: vm
+  template:
+    metadata:
+      labels:
+        app: vm
+    spec:
+      containers:
+      - name: vm
+        image: gcr.io/wyownproject/vm
+        #image: abryu082/vm:v1.0.5
+        ports:
+        - containerPort: 33009
+        volumeMounts:
+        - name: service-key
+          mountPath: /root/wyown.json
+          subPath: wyown.json
+        env:
+        - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+          valueFrom:
+            configMapKeyRef:
+              name: eureka-cm
+              key: eureka_service_address
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /root/wyown.json
+      volumes:
+        - name: service-key
+          secret:
+            secretName: g-secret
+            items:
+              - key: service_account_key
+                path: wyown.json
