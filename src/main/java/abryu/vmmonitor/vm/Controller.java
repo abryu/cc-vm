@@ -30,7 +30,7 @@ public class Controller {
 
     logger.info(this.getClass().getName() + "getHealth " + username);
 
-    return "health check version 1.0.6";
+    return "health check : Version built on 4.12 - 10:37";
   }
 
   @GetMapping("/{username}")
