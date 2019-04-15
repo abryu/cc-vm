@@ -12,14 +12,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableDiscoveryClient
 public class VmApplication {
 
-  static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
-
   public static void main(String[] args)
 
   {
-
-    logger.debug("Starting VmApplication ...");
-
     SpringApplication.run(VmApplication.class, args);
   }
 
