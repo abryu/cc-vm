@@ -5,7 +5,7 @@ pipeline {
         jdk 'jdk8'
     }
     stages {
-        staeg('Initialize') {
+        stage('Initialize') {
             steps {
                 echo 'Initialize..'
                 sh ''' echo "PATH = ${PATH}"
