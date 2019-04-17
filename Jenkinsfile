@@ -15,6 +15,7 @@ spec:
   containers:
   - name: maven
     image: gcr.io/cloud-builders/mvn
+    args '-v "$(pwd)/cc-vm":/usr/src/mymaven -w /usr/src/mymaven'
     command:
     - cat
     tty: true
@@ -31,10 +32,6 @@ spec:
 """
 }
   }
-    tools {
-        //maven 'Maven'
-        jdk 'jdk8'
-    }
     stages {
         stage('Initialize') {
             steps {
@@ -46,8 +43,8 @@ spec:
                 echo 'Building..'
                 container('maven') {
                     sh """
-                        ln -s `pwd` /usr/src/cc-vm
-                        cd /usr/scr/cc-vm
+                        ls /usr/src
+                        cd /usr/scr/mymaven
                         mvn clean package
                         ls
                     """
