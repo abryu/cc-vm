@@ -14,7 +14,7 @@ spec:
   serviceAccountName: cd-jenkins
   containers:
   - name: maven
-    image: maven:3-alpine
+    image: gcr.io/cloud-builders/mvn
     command:
     - cat
     tty: true
