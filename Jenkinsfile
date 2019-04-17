@@ -44,7 +44,14 @@ spec:
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'mvn clean package'
+                container('maven') {
+                    sh """
+                        ln -s `pwd` /usr/src/cc-vm
+                        cd /usr/scr/cc-vm
+                        mvn clean package
+                        ls
+                    """
+                }
             }
         }
         stage('Test') {
