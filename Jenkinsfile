@@ -15,7 +15,7 @@ spec:
   containers:
   - name: maven
     image: gcr.io/cloud-builders/mvn
-    args '-v $(pwd)/cc-vm:/usr/src/mymaven -w /usr/src/mymaven'
+    args: '-v "$(pwd)/cc-vm":/usr/src/mymaven -w /usr/src/mymaven'
     command:
     - cat
     tty: true
