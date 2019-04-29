@@ -1,8 +1,11 @@
 package abryu.vmmonitor.vm;
 
 import abryu.vmmonitor.vm.objects.*;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,6 +16,7 @@ import static abryu.vmmonitor.vm.objects.Constants.getCurrentTimeStamp;
 
 @RequestMapping("/")
 @RestController
+@Service
 public class Controller {
 
   Logger logger = LogManager.getLogger(Controller.class);
@@ -25,8 +29,15 @@ public class Controller {
     this.usageHistoryRepository = usageHistoryRepository;
   }
 
+
   @GetMapping("/{username}/health")
   public String getHealth(@PathVariable final String username) {
+
+    try {
+      Thread.sleep(1000 * 20);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
 
     logger.info(this.getClass().getName() + "getHealth " + username);
 
