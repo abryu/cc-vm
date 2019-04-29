@@ -60,12 +60,6 @@
         </dependency>
 
         <dependency>
-            <!-- Eureka service registration - CHANGED -->
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.google.cloud</groupId>
             <artifactId>google-cloud-datastore</artifactId>
         </dependency>
